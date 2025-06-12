@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubl - Slide 4 (Squircles)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Core Stylesheets -->
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="../css/squircles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Box Icons for modern iconography -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        :root {
+            --deep-purple: #3A3470;
+            --medium-purple: #8A5B96;
+            --magenta: #E15B8F;
+            --gold: #F9AE56;
+        }
+        
+        .deep-purple-bg {
+            background-color: var(--deep-purple);
+            color: white;
+        }
+        
+        .medium-purple-bg {
+            background-color: var(--medium-purple);
+            color: white;
+        }
+        
+        .magenta-bg {
+            background-color: var(--magenta);
+            color: white;
+        }
+        
+        .gold-bg {
+            background-color: var(--gold);
+            color: #333;
+        }
+        
+        .deep-purple-text {
+            color: var(--deep-purple);
+        }
+        
+        .medium-purple-text {
+            color: var(--medium-purple);
+        }
+        
+        .magenta-text {
+            color: var(--magenta);
+        }
+        
+        .gold-text {
+            color: var(--gold);
+        }
+        
+        .feature-column {
+            height: 100%;
+        }
+        
+        .feature-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar" style="width: 33.3%;"></div>
+    </div>
+    
+    <!-- Slides Container -->
+    <div class="slides-container">
+        <!-- Slide 4: Key Features -->
+        <section id="slide-4" class="slide active">
+            <div class="slide-content gradient-subtle">
+                <div class="flex flex-col h-full">
+                    <!-- Heading -->
+                    <h2 class="section-heading mb-4">
+                        Key Features
+                    </h2>
+                    <p class="text-2xl font-light mb-10 deep-purple-text">
+                        How Bubl Streamlines Your Workflow Automation
+                    </p>
+                    
+                    <!-- Main Feature Card - Using squircle-card class -->
+                    <div class="squircle-card deep-purple-bg p-8 mb-8">
+                        <div class="flex items-start">
+                            <div class="squircle-icon deep-purple-bg squircle-icon-lg flex items-center justify-center border-2 border-white bg-opacity-30 mr-6">
+                                <i class='bx bx-brain text-4xl'></i>
+                            </div>
+                            <div>
+                                <div class="squircle-tag bg-white text-purple-900 inline-flex mb-3">
+                                    <i class='bx bx-bulb mr-2'></i>
+                                    <span>Core Feature</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">AI-Driven Workflow Recommendations</h3>
+                                <p class="text-lg font-light">Bubl analyzes your business processes and suggests optimal automation pathways based on your unique needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feature Grid - Using squircle classes -->
+                    <div class="grid grid-cols-3 gap-6 mb-auto">
+                        <!-- Feature 1 -->
+                        <div class="squircle-card medium-purple-bg p-6 feature-column">
+                            <div class="squircle-icon squircle-icon-md mb-4 bg-white flex items-center justify-center">
+                                <i class='bx bx-plug text-2xl medium-purple-text'></i>
+                            </div>
+                            <h4 class="feature-title">Smart Connectors</h4>
+                            <p class="feature-description">Connect to 300+ apps and services with pre-built integrations that adapt to your data patterns.</p>
+                            
+                            <!-- Progress Bar using squircle classes -->
+                            <div class="mt-4">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Integration Success</span>
+                                    <span>98%</span>
+                                </div>
+                                <div class="squircle-bar-container squircle-bar-container-default w-full">
+                                    <div class="squircle-bar bg-white w-11/12 h-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 2 -->
+                        <div class="squircle-card magenta-bg p-6 feature-column">
+                            <div class="squircle-icon squircle-icon-md mb-4 bg-white flex items-center justify-center">
+                                <i class='bx bx-code-alt text-2xl magenta-text'></i>
+                            </div>
+                            <h4 class="feature-title">No-Code Builder</h4>
+                            <p class="feature-description">Drag-and-drop workflow builder with business-friendly visual interface and natural language controls.</p>
+                            
+                            <!-- Tags using squircle class -->
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="squircle-tag bg-white magenta-text text-xs py-1 px-3">Easy</span>
+                                <span class="squircle-tag bg-white magenta-text text-xs py-1 px-3">Visual</span>
+                                <span class="squircle-tag bg-white magenta-text text-xs py-1 px-3">Intuitive</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Feature 3 -->
+                        <div class="squircle-card gold-bg p-6 feature-column">
+                            <div class="squircle-icon squircle-icon-md mb-4 bg-white flex items-center justify-center">
+                                <i class='bx bx-line-chart text-2xl gold-text'></i>
+                            </div>
+                            <h4 class="feature-title text-gray-800">Analytics Dashboard</h4>
+                            <p class="feature-description text-gray-800">Real-time performance tracking with AI-enhanced insights to optimize your workflows.</p>
+                            
+                            <!-- List using squircle icons -->
+                            <div class="mt-4 space-y-2">
+                                <div class="flex items-center">
+                                    <div class="squircle-icon mr-2 bg-white w-6 h-6 flex items-center justify-center">
+                                        <i class='bx bx-check text-sm gold-text'></i>
+                                    </div>
+                                    <span class="text-sm text-gray-800">ROI Tracking</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="squircle-icon mr-2 bg-white w-6 h-6 flex items-center justify-center">
+                                        <i class='bx bx-check text-sm gold-text'></i>
+                                    </div>
+                                    <span class="text-sm text-gray-800">Usage Metrics</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="squircle-icon mr-2 bg-white w-6 h-6 flex items-center justify-center">
+                                        <i class='bx bx-check text-sm gold-text'></i>
+                                    </div>
+                                    <span class="text-sm text-gray-800">Performance Insights</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+        <button id="prevBtn" class="nav-button"><i class='bx bx-chevron-left'></i> Previous</button>
+        <button id="nextBtn" class="nav-button primary">Next <i class='bx bx-chevron-right'></i></button>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+    
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <div class="indicator"></div>
+        <span id="slideCounter">04</span>
+        <span>/</span>
+        <span id="slideCounterTotal">12</span>
+    </div>
+    
+    <!-- Squircle JavaScript -->
+    <script src="../js/squircles.js"></script>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up navigation between files
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const navDots = document.getElementById('navDots');
+            const currentSlideNumber = 4;
+            const totalSlides = 12;
+            
+            // Create navigation dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                if (i === currentSlideNumber - 1) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i + 1));
+                navDots.appendChild(dot);
+            }
+            
+            // Navigation functions
+            function goToSlide(slideNumber) {
+                // If the slide has the squircle version, use that instead
+                if (slideNumber === 4) {
+                    window.location.href = `slide${slideNumber}-squircle.html`;
+                } else {
+                    window.location.href = `slide${slideNumber}.html`;
+                }
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', () => {
+                if (currentSlideNumber > 1) {
+                    goToSlide(currentSlideNumber - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSlideNumber < totalSlides) {
+                    goToSlide(currentSlideNumber + 1);
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    if (currentSlideNumber < totalSlides) {
+                        goToSlide(currentSlideNumber + 1);
+                    }
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    if (currentSlideNumber > 1) {
+                        goToSlide(currentSlideNumber - 1);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

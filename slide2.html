@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubl - Slide 2</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="css/squircles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Box Icons for modern iconography -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        :root {
+            --deep-purple: #3A3470;
+            --medium-purple: #8A5B96;
+            --magenta: #E15B8F;
+            --gold: #F9AE56;
+            --light-purple: #8A63FF;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .problem-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            text-align: left;
+            margin-bottom: 1.25rem;
+            font-size: 28px;
+        }
+        
+        .problem-description {
+            font-size: 20px;
+            line-height: 1.4;
+            text-align: left;
+        }
+        
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(138, 91, 150, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .stat-bubble {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .stat-bubble:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        
+        .card-gradient-1 {
+            background: white;
+        }
+        
+        .card-gradient-2 {
+            background: white;
+        }
+        
+        .card-gradient-3 {
+            background: white;
+        }
+        
+        .stat-bubble::before {
+            display: none;
+        }
+        
+        .stat-bubble:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .subtitle {
+            font-family: 'Sora', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--light-purple);
+            margin-bottom: 2rem;
+        }
+        
+        /* Harmonious typographic scale */
+        .section-heading {
+            font-family: 'Sora', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        
+        p, .text-gray-600, .text-gray-700 {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar" style="width: 16.7%;"></div>
+    </div>
+    
+    <!-- Slides Container -->
+    <div class="slides-container">
+        <!-- Slide 2: Problem Statement -->
+        <section id="slide-2" class="slide active">
+            <div class="slide-content" ">
+                <div class="flex flex-col h-full">
+                    <!-- Main Heading - Left Aligned -->
+                    <h2 class="section-heading mb-4 text-left" style="color: #000; font-size: 80px;">
+                        The Problem
+                    </h2>
+                    <p class="subtitle text-left" style="font-size: 40px;">
+                        Fragmented Tools. Wasted Time. Lost Opportunities.
+                    </p>
+                    
+                    <!-- Problem Statements - Cards with clean design -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                        <!-- Problem 1: Data Silos -->
+                        <div class="animate-fade-in-1">
+                            <div class="problem-card">
+                                <div class="problem-icon" style="background-color: var(--deep-purple);">
+                                    <i class='bx bx-unlink'></i>
+                                </div>
+                                <h3 class="problem-title" style="color: var(--deep-purple);">Data Silos</h3>
+                                <p class="problem-description text-gray-800">Marketing, sales, operations systems don't talk to each other, creating organizational inefficiencies and missed opportunities.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Problem 2: Manual Work -->
+                        <div class="animate-fade-in-2">
+                            <div class="problem-card">
+                                <div class="problem-icon" style="background-color: var(--medium-purple);">
+                                    <i class='bx bx-time'></i>
+                                </div>
+                                <h3 class="problem-title" style="color: var(--medium-purple);">Manual Work</h3>
+                                <p class="problem-description text-gray-800">Employees spend 30%+ of time on repetitive tasks that could be automated, reducing innovation and overall productivity.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Problem 3: Complex Platforms -->
+                        <div class="animate-fade-in-3">
+                            <div class="problem-card">
+                                <div class="problem-icon" style="background-color: var(--magenta);">
+                                    <i class='bx bx-cog'></i>
+                                </div>
+                                <h3 class="problem-title" style="color: var(--magenta);">Complex Platforms</h3>
+                                <p class="problem-description text-gray-800">Enterprise iPaaS solutions are too complex and expensive, while low-code tools lack the necessary flexibility.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Row - Positioned directly under with minimal gap -->
+                    <div class="grid grid-cols-3 gap-8 mt-2 animate-fade-in-4">
+                        <div class="stat-bubble" style="background-color: var(--deep-purple);">
+                            <div class="stat-value">$12.9M</div>
+                            <div class="text-center" style="font-size: 24px;">lost annually due to poor data quality</div>
+                        </div>
+                        <div class="stat-bubble" style="background-color: var(--medium-purple);">
+                            <div class="stat-value">3h+</div>
+                            <div class="text-center" style="font-size: 24px;">daily spent on manual tasks that could be automated</div>
+                        </div>
+                        <div class="stat-bubble" style="background-color: var(--magenta);">
+                            <div class="stat-value">14%</div>
+                            <div class="text-center" style="font-size: 24px;">of organizations invest $1-5M in process automation</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+        <button id="prevBtn" class="nav-button"><i class='bx bx-chevron-left'></i> Previous</button>
+        <button id="nextBtn" class="nav-button primary">Next <i class='bx bx-chevron-right'></i></button>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+    
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <div class="indicator"></div>
+        <span id="slideCounter">02</span>
+        <span>/</span>
+        <span id="slideCounterTotal">12</span>
+    </div>
+    
+    <!-- Squircle JavaScript -->
+    <script src="js/squircles.js"></script>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize squircles with custom CSS variables
+            if (window.BublSquircles) {
+                setTimeout(function() {
+                    BublSquircles.init(); 
+                }, 100);
+            }
+            
+            // Set up navigation between files
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const navDots = document.getElementById('navDots');
+            const currentSlideNumber = 2;
+            const totalSlides = 12;
+            
+            // Create navigation dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                if (i === currentSlideNumber - 1) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i + 1));
+                navDots.appendChild(dot);
+            }
+            
+            // Navigation functions
+            function goToSlide(slideNumber) {
+                window.location.href = `slide${slideNumber}.html`;
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', () => {
+                if (currentSlideNumber > 1) {
+                    goToSlide(currentSlideNumber - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSlideNumber < totalSlides) {
+                    goToSlide(currentSlideNumber + 1);
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    if (currentSlideNumber < totalSlides) {
+                        goToSlide(currentSlideNumber + 1);
+                    }
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    if (currentSlideNumber > 1) {
+                        goToSlide(currentSlideNumber - 1);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

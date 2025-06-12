@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubl - Slide 10</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="css/squircles.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Box Icons for modern iconography -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            /* Exact brand colors */
+            --bubl-primary: #3A3470;
+            --bubl-secondary: #6366F1;
+            --bubl-accent: #E15B8F;
+            --bubl-gold: #F9AE56;
+            --light-purple: #8A63FF;
+            --bar-radius: 8; /* Adding smaller radius for bars */
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            border: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+        
+        .funding-container {
+            height: calc(100vh - 420px);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .funding-item {
+            position: relative;
+            height: 3.25rem; /* Match slide 9 height */
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .funding-label {
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            z-index: 10;
+            font-size: 20px;
+        }
+        
+        .funding-percent {
+            position: absolute;
+            right: 1rem;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            z-index: 10;
+            font-size: 20px;
+        }
+        
+        .milestone-line {
+            display: none;
+        }
+        
+        .milestone {
+            position: relative;
+            padding-top: 38px;
+        }
+        
+        .milestone-marker {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            border: none;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .milestone-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 1.2rem 0.8rem;
+            height: 100%;
+            min-height: 120px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            margin-top: 1.25rem;
+            text-align: center;
+            border: none;
+        }
+        
+        .milestone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .milestone-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .milestone-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.75rem 2rem;
+            border-radius: 100px;
+            background-color: var(--bubl-primary);
+            color: white;
+            font-family: var(--font-ui);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+        
+        /* Add this section for harmonious typography */
+        .section-heading {
+            font-family: var(--font-display);
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+        
+        .subtitle {
+            font-family: 'Sora', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--light-purple);
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        
+        p, .text-gray-600, .text-gray-700, .text-indigo-100, .card-description, .team-description, .team-position, .achievement-text {
+            font-size: 20px;
+            line-height: 1.4;
+        }
+        
+        h3, .text-xl, .text-2xl, .team-name, .team-title {
+            font-size: 28px;
+            line-height: 1.3;
+        }
+        
+        .text-lg {
+            font-size: 22px;
+            line-height: 1.3;
+        }
+        
+        .text-sm, .team-stat {
+            font-size: 16px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar" style="width: 83.3%;"></div>
+    </div>
+    
+    <!-- Slides Container -->
+    <div class="slides-container">
+        <!-- Slide 10: The Ask -->
+        <section id="slide-10" class="slide active">
+            <div class="slide-content gradient-subtle">
+                <div class="h-full flex flex-col">
+                    <!-- Heading -->
+                    <h2 class="section-heading mb-4 text-left" style="font-size: 80px;">
+                        The Ask
+                    </h2>
+                    <p class="subtitle text-left mb-10" style="font-size: 40px; color: #8A63FF;">
+                        Our Seed Funding Round
+                    </p>
+                    
+                    <div class="funding-container">
+                        <!-- Main Card -->
+                        <div class="card p-8 mb-10 animate-fade-in">
+                            <div class="grid grid-cols-7 gap-8">
+                                <!-- Left - Core Message -->
+                                <div class="col-span-3">
+                                    <h3 class="subsection-heading mb-6" style="color: var(--bubl-primary)">Capital Raise</h3>
+                                    <div class="text-5xl font-bold mb-6" style="color: var(--bubl-primary)">$5M</div>
+                                    <p class="text-xl mb-4">Seed Round</p>
+                                    <p class="text-gray-600 mb-8">
+                                        Supporting 18 months of product, growth, and infrastructure development to reach our Series A milestones.
+                                    </p>
+                                    <button class="cta-button animate-pulse">
+                                        Request Data Room Access
+                                        <i class='bx bx-right-arrow-alt ml-2 text-xl'></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Right - Funding Use -->
+                                <div class="col-span-4">
+                                    <h3 class="subsection-heading mb-6" style="color: var(--bubl-secondary)">Funding Allocation</h3>
+                                    
+                                    <!-- Donut chart -->
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="h-72 flex items-center justify-center relative">
+                                            <canvas id="fundingChart"></canvas>
+                                        </div>
+                                        
+                                        <!-- Funding breakdown -->
+                                        <div class="space-y-4">
+                                            <!-- Product & Engineering -->
+                                            <div class="funding-item" style="background-color: rgba(58, 52, 112, 0.15);">
+                                                <div style="position: absolute; top: 0; left: 0; height: 100%; width: 60%; background-color: var(--bubl-primary);"></div>
+                                                <div class="funding-label">Product & Engineering</div>
+                                                <div class="funding-percent">60%</div>
+                                            </div>
+                                            
+                                            <!-- Go-to-Market -->
+                                            <div class="funding-item" style="background-color: rgba(99, 102, 241, 0.15);">
+                                                <div style="position: absolute; top: 0; left: 0; height: 100%; width: 25%; background-color: var(--bubl-secondary);"></div>
+                                                <div class="funding-label">Go-to-Market</div>
+                                                <div class="funding-percent">25%</div>
+                                            </div>
+                                            
+                                            <!-- Operations -->
+                                            <div class="funding-item" style="background-color: rgba(225, 91, 143, 0.15);">
+                                                <div style="position: absolute; top: 0; left: 0; height: 100%; width: 10%; background-color: var(--bubl-accent);"></div>
+                                                <div class="funding-label">Operations & Community</div>
+                                                <div class="funding-percent">10%</div>
+                                            </div>
+                                            
+                                            <!-- Legal -->
+                                            <div class="funding-item" style="background-color: rgba(249, 174, 86, 0.15);">
+                                                <div style="position: absolute; top: 0; left: 0; height: 100%; width: 5%; background-color: var(--bubl-gold);"></div>
+                                                <div class="funding-label">Legal, Admin, Security</div>
+                                                <div class="funding-percent">5%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Milestones Timeline -->
+                        <div class="card squircle-card p-6 pb-10 animate-slide-up" style="min-height: 220px; margin-top: -20px;">
+                            <div class="relative">
+                                <div class="milestone-line"></div>
+                                <div class="grid grid-cols-4 gap-3">
+                                    <!-- Milestone 1 -->
+                                    <div class="milestone">
+                                        <div class="milestone-marker squircle-icon" style="background-color: var(--bubl-primary); color: white;">
+                                            <i class='bx bx-rocket'></i>
+                                        </div>
+                                        <div class="milestone-card squircle-card">
+                                            <h4 class="milestone-title" style="color: var(--bubl-primary);">Public Beta Launch</h4>
+                                            <p class="milestone-description">Early access for startups and midmarket companies</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Milestone 2 -->
+                                    <div class="milestone">
+                                        <div class="milestone-marker squircle-icon" style="background-color: var(--bubl-secondary); color: white;">
+                                            <i class='bx bx-group'></i>
+                                        </div>
+                                        <div class="milestone-card squircle-card">
+                                            <h4 class="milestone-title" style="color: var(--bubl-secondary);">500+ Paying Teams</h4>
+                                            <p class="milestone-description">Building sustainable revenue base</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Milestone 3 -->
+                                    <div class="milestone">
+                                        <div class="milestone-marker squircle-icon" style="background-color: var(--bubl-accent); color: white;">
+                                            <i class='bx bx-code-block'></i>
+                                        </div>
+                                        <div class="milestone-card squircle-card">
+                                            <h4 class="milestone-title" style="color: var(--bubl-accent);">SDK & Marketplace</h4>
+                                            <p class="milestone-description">Developer ecosystem expansion</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Milestone 4 -->
+                                    <div class="milestone">
+                                        <div class="milestone-marker squircle-icon" style="background-color: var(--bubl-gold); color: white;">
+                                            <i class='bx bx-line-chart'></i>
+                                        </div>
+                                        <div class="milestone-card squircle-card">
+                                            <h4 class="milestone-title" style="color: var(--bubl-gold);">Series A Ready</h4>
+                                            <p class="milestone-description">MRR growth & retention targets met</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Spacer for bottom navigation -->
+                    <div class="mb-16"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+        <button id="prevBtn" class="nav-button"><i class='bx bx-chevron-left'></i> Previous</button>
+        <button id="nextBtn" class="nav-button primary">Next <i class='bx bx-chevron-right'></i></button>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+    
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+        <div class="indicator"></div>
+        <span id="slideCounter">10</span>
+        <span>/</span>
+        <span id="slideCounterTotal">12</span>
+    </div>
+    
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up navigation between files
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const navDots = document.getElementById('navDots');
+            const currentSlideNumber = 10;
+            const totalSlides = 12;
+            
+            // Create navigation dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('nav-dot');
+                if (i === currentSlideNumber - 1) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i + 1));
+                navDots.appendChild(dot);
+            }
+            
+            // Navigation functions
+            function goToSlide(slideNumber) {
+                window.location.href = `slide${slideNumber}.html`;
+            }
+            
+            // Event listeners
+            prevBtn.addEventListener('click', () => {
+                if (currentSlideNumber > 1) {
+                    goToSlide(currentSlideNumber - 1);
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                if (currentSlideNumber < totalSlides) {
+                    goToSlide(currentSlideNumber + 1);
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    if (currentSlideNumber < totalSlides) {
+                        goToSlide(currentSlideNumber + 1);
+                    }
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    if (currentSlideNumber > 1) {
+                        goToSlide(currentSlideNumber - 1);
+                    }
+                }
+            });
+            
+            // Create funding allocation donut chart
+            const ctx = document.getElementById('fundingChart').getContext('2d');
+            
+            // Get CSS variables for consistent colors
+            const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--bubl-primary').trim();
+            const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--bubl-secondary').trim();
+            const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--bubl-accent').trim();
+            const goldColor = getComputedStyle(document.documentElement).getPropertyValue('--bubl-gold').trim();
+            
+            const fundingChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Product & Engineering', 'Go-to-Market', 'Operations', 'Legal'],
+                    datasets: [{
+                        data: [60, 25, 10, 5],
+                        backgroundColor: [
+                            primaryColor,
+                            secondaryColor,
+                            accentColor,
+                            goldColor
+                        ],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: primaryColor,
+                            bodyColor: primaryColor,
+                            borderColor: '#e1e1e1',
+                            borderWidth: 1,
+                            cornerRadius: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: true,
+                        duration: 1000,
+                        easing: 'easeOutQuart'
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    elements: {
+                        arc: {
+                            borderWidth: 0,
+                            borderColor: 'transparent'
+                        }
+                    },
+                    datasets: {
+                        doughnut: {
+                            borderColor: 'transparent',
+                            borderWidth: 0
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!-- Squircle JavaScript -->
+    <script src="js/squircles.js"></script>
+</body>
+</html>

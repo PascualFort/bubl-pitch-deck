@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubl - Slide 8</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="css/squircles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Box Icons for modern iconography -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Exact brand colors */
+        --bubl-primary: #3a3470;
+        --bubl-secondary: #6366f1;
+        --bubl-accent: #e15b8f;
+        --bubl-gold: #f9ae56;
+        --light-purple: #8a63ff;
+      }
+
+      /* Subtitle styling to match other slides */
+      .subtitle {
+        font-family: "Sora", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--light-purple, #8a63ff);
+        margin: 0 0 32px;
+        line-height: 1.3;
+      }
+
+      .gtm-container {
+        height: calc(100vh - 260px);
+        min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Timeline indicator styling */
+      .timeline-indicator {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding: 0 1rem;
+      }
+
+      .timeline-indicator::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          var(--bubl-primary),
+          var(--bubl-secondary),
+          var(--bubl-accent)
+        );
+        z-index: 0;
+      }
+
+      .timeline-marker {
+        position: relative;
+        width: 30%;
+        text-align: center;
+        z-index: 1;
+      }
+
+      .timeline-dot {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 0 auto 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 14px;
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+      }
+
+      .timeline-date {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        padding: 6px 12px;
+        border-radius: 16px;
+        background-color: white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        display: inline-block;
+      }
+
+      /* Strategy cards - redesigned for more visual appeal */
+      .strategy-card {
+        height: 100%;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: white;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .strategy-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .strategy-header {
+        padding: 2.5rem 1.75rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .strategy-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          circle at 90% 10%,
+          rgba(255, 255, 255, 0.18) 0%,
+          transparent 60%
+        );
+      }
+
+      .phase-date {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        right: auto;
+        font-size: 17px;
+        font-weight: 500;
+        background-color: rgba(255, 255, 255, 0.25);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        backdrop-filter: blur(2px);
+        z-index: 2;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .phase-date i {
+        margin-right: 0.4rem;
+        font-size: 0.85rem;
+      }
+
+      .phase-number {
+        position: absolute;
+        font-family: "Sora", sans-serif;
+        font-size: 10rem;
+        font-weight: 800;
+        line-height: 1;
+        opacity: 0.15;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      .strategy-title {
+        font-family: "Sora", sans-serif;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+      }
+
+      .strategy-subtitle {
+        font-family: "Inter", sans-serif;
+        font-size: 24px;
+        opacity: 0.9;
+        line-height: 1.3;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0.5rem;
+      }
+
+      .strategy-content {
+        background-color: white;
+        padding: 1.75rem;
+        flex: 1;
+      }
+
+      .strategy-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .strategy-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .strategy-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        margin-right: 1rem;
+        margin-left: 0;
+        color: white;
+        position: relative;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        font-size: 1.25rem;
+      }
+
+      .strategy-icon::before {
+        content: none;
+      }
+
+      .strategy-text {
+        flex: 1;
+      }
+
+      .strategy-text h4 {
+        font-family: "Sora", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+        color: #333;
+      }
+
+      .strategy-text p {
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      /* Connectors between items - more subtle styling */
+      .connector-line {
+        position: absolute;
+        top: 45px;
+        left: 22px;
+        right: auto;
+        width: 1px;
+        bottom: 15px;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.05),
+          transparent
+        );
+      }
+
+      .strategy-item:last-child .connector-line {
+        display: none;
+      }
+
+      /* Add this section for harmonious typography */
+      .section-heading {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+      }
+
+      p,
+      .text-gray-600,
+      .text-gray-700,
+      .strategy-description,
+      .strategy-item-text {
+        font-size: 20px;
+        line-height: 1.4;
+      }
+
+      h3,
+      .text-xl,
+      .text-2xl,
+      .strategy-title {
+        font-size: 28px;
+        line-height: 1.3;
+      }
+
+      .text-lg,
+      .strategy-subtitle {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .text-sm,
+      .timeline-date,
+      .phase-date {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      /* Remove animation classes */
+      .animate-fade-in,
+      .delay-1,
+      .delay-2,
+      .delay-3,
+      .delay-4,
+      .delay-5,
+      .delay-6 {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar" style="width: 66.7%"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+      <!-- Slide 8: Go-to-Market Strategy -->
+      <section id="slide-8" class="slide active">
+        <div class="slide-content gradient-subtle">
+          <div class="h-full flex flex-col p-8">
+            <!-- Title Section -->
+            <div class="text-left">
+              <h2
+                class="section-heading mb-3"
+                style="color: #000; font-size: 80px"
+              >
+                Go-to-Market Strategy
+              </h2>
+              <p class="subtitle text-left" style="font-size: 40px">
+                Phased PLG & Strategic Enterprise Expansion
+              </p>
+            </div>
+
+            <div class="gtm-container">
+              <!-- Strategy Cards -->
+              <div class="grid grid-cols-3 gap-8">
+                <!-- Phase 1 -->
+                <div class="strategy-card">
+                  <div
+                    class="strategy-header"
+                    style="background-color: var(--bubl-primary)"
+                  >
+                    <div class="phase-date">
+                      <i class="bx bx-calendar-alt"></i>
+                      Q2-Q4 2025
+                    </div>
+                    <h3 class="strategy-title">Build the Foundation</h3>
+                    <p class="strategy-subtitle">
+                      Establish user base through free access
+                    </p>
+                    <div class="phase-number">1</div>
+                  </div>
+                  <div class="strategy-content">
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-primary)"
+                      >
+                        <i class="bx bx-rocket"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Freemium Launch</h4>
+                        <p>
+                          Low friction adoption with free tier for individuals
+                        </p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-primary)"
+                      >
+                        <i class="bx bx-layer"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Community Templates</h4>
+                        <p>Marketplace for workflow sharing and discovery</p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-primary)"
+                      >
+                        <i class="bx bx-trending-up"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Viral Growth</h4>
+                        <p>In-product sharing and collaboration features</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="strategy-card">
+                  <div
+                    class="strategy-header"
+                    style="background-color: var(--bubl-secondary)"
+                  >
+                    <div class="phase-date">
+                      <i class="bx bx-calendar-alt"></i>
+                      Q1-Q3 2026
+                    </div>
+                    <h3 class="strategy-title">Scale the Business</h3>
+                    <p class="strategy-subtitle">
+                      Target mid-market and enterprise clients
+                    </p>
+                    <div class="phase-number">2</div>
+                  </div>
+                  <div class="strategy-content">
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-secondary)"
+                      >
+                        <i class="bx bx-building"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Target Companies</h4>
+                        <p>Series A-C companies in high-growth sectors</p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-secondary)"
+                      >
+                        <i class="bx bx-category"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Key Industries</h4>
+                        <p>Tech, Finance, Logistics & Operations</p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-secondary)"
+                      >
+                        <i class="bx bx-user-voice"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Direct Outreach</h4>
+                        <p>Account-based selling to decision makers</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="strategy-card">
+                  <div
+                    class="strategy-header"
+                    style="background-color: var(--bubl-accent)"
+                  >
+                    <div class="phase-date">
+                      <i class="bx bx-calendar-alt"></i>
+                      Q4 2026-Q2 2027
+                    </div>
+                    <h3 class="strategy-title">Expand & Accelerate</h3>
+                    <p class="strategy-subtitle">
+                      Leverage partners for global reach
+                    </p>
+                    <div class="phase-number">3</div>
+                  </div>
+                  <div class="strategy-content">
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-accent)"
+                      >
+                        <i class="bx bx-network-chart"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Systems Integrators</h4>
+                        <p>Partner with established implementation firms</p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div class="connector-line"></div>
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-accent)"
+                      >
+                        <i class="bx bx-certification"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Partner Program</h4>
+                        <p>Formalized training and certification</p>
+                      </div>
+                    </div>
+
+                    <div class="strategy-item">
+                      <div
+                        class="strategy-icon"
+                        style="background-color: var(--bubl-accent)"
+                      >
+                        <i class="bx bx-expand-horizontal"></i>
+                      </div>
+                      <div class="strategy-text">
+                        <h4>Global Expansion</h4>
+                        <p>Regional partners for international markets</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+      <button id="prevBtn" class="nav-button">
+        <i class="bx bx-chevron-left"></i> Previous
+      </button>
+      <button id="nextBtn" class="nav-button primary">
+        Next <i class="bx bx-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+      <div class="indicator"></div>
+      <span id="slideCounter">08</span>
+      <span>/</span>
+      <span id="slideCounterTotal">12</span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up navigation between files
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const navDots = document.getElementById("navDots");
+        const currentSlideNumber = 8;
+        const totalSlides = 12;
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("nav-dot");
+          if (i === currentSlideNumber - 1) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i + 1));
+          navDots.appendChild(dot);
+        }
+
+        // Navigation functions
+        function goToSlide(slideNumber) {
+          window.location.href = `slide${slideNumber}.html`;
+        }
+
+        // Event listeners
+        prevBtn.addEventListener("click", () => {
+          if (currentSlideNumber > 1) {
+            goToSlide(currentSlideNumber - 1);
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentSlideNumber < totalSlides) {
+            goToSlide(currentSlideNumber + 1);
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            if (currentSlideNumber < totalSlides) {
+              goToSlide(currentSlideNumber + 1);
+            }
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            if (currentSlideNumber > 1) {
+              goToSlide(currentSlideNumber - 1);
+            }
+          }
+        });
+      });
+    </script>
+
+    <!-- Squircle JavaScript -->
+    <script src="js/squircles.js"></script>
+  </body>
+</html>

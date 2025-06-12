@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubl - Slide 4</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="css/squircles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tabler Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
+    />
+
+    <!-- Box Icons for modern iconography -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --deep-purple: #3a3470;
+        --medium-purple: #6b5b95;
+        --magenta: #e83e8c;
+        --gold: #ffb800;
+        --light-purple: #8a63ff;
+      }
+
+      .deep-purple-bg {
+        background-color: var(--deep-purple);
+        color: white;
+      }
+      .medium-purple-bg {
+        background-color: var(--medium-purple);
+        color: white;
+      }
+      .magenta-bg {
+        background-color: var(--magenta);
+        color: white;
+      }
+      .gold-bg {
+        background-color: var(--gold);
+        color: #333;
+      }
+
+      /* Keep existing color text classes */
+      .deep-purple-text {
+        color: var(--deep-purple);
+      }
+      .medium-purple-text {
+        color: var(--medium-purple);
+      }
+      .magenta-text {
+        color: var(--magenta);
+      }
+      .gold-text {
+        color: var(--gold);
+      }
+
+      /* Update feature card to use squircle styling */
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Add SVG background styling */
+      .workflow-svg-bg {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        width: 240px;
+        height: 240px;
+        opacity: 0.2;
+        z-index: 0;
+      }
+
+      /* Add class for squircle cards */
+      .squircle-card {
+        --card-radius: 24;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 30px -8px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-description {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 20px;
+        line-height: 1.4;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0.75rem;
+        flex-grow: 1;
+      }
+
+      .subtitle {
+        font-family: "Sora", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--light-purple);
+        margin-bottom: 2rem;
+        line-height: 1.3;
+      }
+
+      /* Keep existing card gradient styling */
+      .feature-card.deep-purple-card {
+        background: linear-gradient(
+          145deg,
+          rgba(58, 52, 112, 0.95),
+          rgba(58, 52, 112, 0.85)
+        );
+        color: white;
+      }
+
+      .feature-card.medium-purple-card {
+        background: linear-gradient(
+          145deg,
+          rgba(138, 91, 150, 0.95),
+          rgba(138, 91, 150, 0.85)
+        );
+        color: white;
+      }
+
+      .feature-card.magenta-card {
+        background: linear-gradient(
+          145deg,
+          rgba(225, 91, 143, 0.95),
+          rgba(225, 91, 143, 0.85)
+        );
+        color: white;
+      }
+
+      /* Update icon styling to use squircle */
+      .icon-circle {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.25rem;
+      }
+
+      /* Update metric card to use squircle styling */
+      .metric-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .metric-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .metric-value {
+        font-family: var(--font-display);
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin: 0.5rem 0;
+        line-height: 1;
+      }
+
+      .metric-label {
+        color: #555;
+        font-size: 20px;
+        line-height: 1.4;
+        margin-bottom: 0.75rem;
+      }
+
+      /* Column layout */
+      .left-column,
+      .right-column {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      /* Content containers take maximum space */
+      .content-container {
+        flex: 1;
+        display: flex;
+      }
+
+      /* Left column feature cards */
+      .feature-cards-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 65fr 35fr;
+        gap: 1.25rem;
+        height: 100%;
+        min-height: 100%;
+        width: 100%;
+      }
+
+      /* Make the feature card container take full width */
+      .content-container > .feature-cards-container {
+        width: 100%;
+      }
+
+      /* Top feature card spans both columns */
+      .feature-cards-container > div:nth-child(1) {
+        grid-column: span 2;
+        grid-row: 1;
+      }
+
+      /* Bottom feature cards */
+      .feature-cards-container > div:nth-child(2),
+      .feature-cards-container > div:nth-child(3) {
+        grid-row: 2;
+      }
+
+      /* Feature cards take up all available space */
+      .feature-card {
+        margin-bottom: 0;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Right column metrics grid */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 1.25rem;
+        height: 100%;
+      }
+
+      /* Column headers */
+      .column-header {
+        margin-bottom: 1.25rem;
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-delay-1 {
+        animation-delay: 0.1s;
+        opacity: 0;
+      }
+
+      .animate-delay-2 {
+        animation-delay: 0.2s;
+        opacity: 0;
+      }
+
+      .animate-delay-3 {
+        animation-delay: 0.3s;
+        opacity: 0;
+      }
+
+      .animate-delay-4 {
+        animation-delay: 0.4s;
+        opacity: 0;
+      }
+
+      .feature-number {
+        position: absolute;
+        top: 0.75rem;
+        right: 1.25rem;
+        font-size: 2.75rem;
+        font-weight: 800;
+        opacity: 0.1;
+        color: white;
+        line-height: 1;
+      }
+
+      /* Position tags at bottom of cards */
+      .feature-tag {
+        margin-top: auto;
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background-color: transparent;
+        font-size: 16px;
+        color: white;
+        z-index: 1;
+        position: relative;
+        border: none;
+      }
+
+      .feature-tag i {
+        margin-right: 6px;
+      }
+
+      /* Harmonious typographic scale */
+      .section-heading {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+      }
+
+      .feature-title,
+      h4.font-medium,
+      h3,
+      .text-xl,
+      .text-2xl {
+        font-size: 28px;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+
+      p,
+      .text-gray-600,
+      .text-gray-700,
+      .text-indigo-100,
+      .metric-value,
+      .feature-description {
+        font-size: 20px;
+        line-height: 1.4;
+      }
+
+      .text-lg {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .text-sm,
+      .feature-tag {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar" style="width: 33.3%"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+      <!-- Slide 4: Our Solution -->
+      <section id="slide-4" class="slide active">
+        <div class="slide-content gradient-subtle">
+          <div class="h-full flex flex-col">
+            <!-- Heading -->
+            <h2
+              class="section-heading mb-3 text-left"
+              style="color: #000; font-size: 80px"
+            >
+              Our Solution
+            </h2>
+            <p class="subtitle text-left" style="font-size: 40px">
+              Intelligent Workflow Automation, Simplified
+            </p>
+
+            <!-- Two-column layout -->
+            <div class="grid grid-cols-2 gap-6 h-full">
+              <!-- Left Column: Core Features -->
+              <div class="left-column">
+                <h3
+                  class="text-lg font-semibold text-gray-700 column-header"
+                  style="font-size: 20px"
+                >
+                  Core Platform Features
+                </h3>
+
+                <!-- Feature cards container -->
+                <div class="content-container">
+                  <div class="feature-cards-container">
+                    <!-- Visual Workflow Builder - Full width -->
+                    <div
+                      class="feature-card deep-purple-card animate-fade-in animate-delay-1"
+                    >
+                      <div class="feature-number">01</div>
+                      <div class="flex items-center mb-4 relative z-1">
+                        <div
+                          class="icon-circle deep-purple-bg mr-4"
+                          style="width: 60px; height: 60px"
+                        >
+                          <i
+                            class="ti ti-layout-grid"
+                            style="font-size: 26px"
+                          ></i>
+                        </div>
+                        <div>
+                          <h4 class="feature-title" style="font-size: 32px">
+                            Visual Workflow Builder
+                          </h4>
+                        </div>
+                      </div>
+                      <p class="feature-description">
+                        Intuitive drag-and-drop interface to design, build, and
+                        deploy complex workflows without coding skills required.
+                      </p>
+                      <div class="feature-tag">
+                        <i class="ti ti-code mr-2"></i>
+                        No-code friendly
+                      </div>
+
+                      <!-- Workflow Diagram SVG -->
+                      <svg
+                        class="workflow-svg-bg"
+                        viewBox="0 0 200 200"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <!-- Start Node -->
+                        <circle
+                          cx="100"
+                          cy="30"
+                          r="15"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- Start Icon -->
+                        <path
+                          d="M100 20V40M90 30H110"
+                          stroke="white"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- Connection Line 1 -->
+                        <path
+                          d="M100 45V60"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+
+                        <!-- Decision Node -->
+                        <polygon
+                          points="100,60 115,75 100,90 85,75"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- Decision Icon -->
+                        <path
+                          d="M95 75H105M100 70V80"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- Connection Lines from Decision -->
+                        <path
+                          d="M85 75H65"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+                        <path
+                          d="M115 75H135"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+                        <path
+                          d="M100 90V110"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+
+                        <!-- Left Process Node -->
+                        <rect
+                          x="40"
+                          y="65"
+                          width="25"
+                          height="20"
+                          rx="5"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- Process Icon -->
+                        <path
+                          d="M47 75H58"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- Right Process Node -->
+                        <rect
+                          x="135"
+                          y="65"
+                          width="25"
+                          height="20"
+                          rx="5"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- Process Icon -->
+                        <path
+                          d="M142 75H153"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- Bottom Process Node -->
+                        <rect
+                          x="87.5"
+                          y="110"
+                          width="25"
+                          height="20"
+                          rx="5"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- Process Icon -->
+                        <path
+                          d="M94.5 120H105.5"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                        />
+
+                        <!-- Connection Lines to End -->
+                        <path
+                          d="M52.5 85V130"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+                        <path
+                          d="M147.5 85V130"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+                        <path
+                          d="M100 130V145"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+                        <path
+                          d="M52.5 130H147.5"
+                          stroke="white"
+                          stroke-width="2"
+                          stroke-dasharray="2 2"
+                        />
+
+                        <!-- End Node -->
+                        <circle
+                          cx="100"
+                          cy="160"
+                          r="15"
+                          fill="white"
+                          opacity="0.7"
+                        />
+                        <!-- End Icon -->
+                        <path
+                          d="M90 160H110"
+                          stroke="white"
+                          stroke-width="3"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+
+                    <!-- AI Workflow Assistant -->
+                    <div
+                      class="feature-card medium-purple-card animate-fade-in animate-delay-2"
+                    >
+                      <div class="feature-number">02</div>
+                      <div class="flex items-center mb-4 relative z-1">
+                        <div
+                          class="icon-circle medium-purple-bg mr-4"
+                          style="width: 60px; height: 60px"
+                        >
+                          <i class="ti ti-robot" style="font-size: 26px"></i>
+                        </div>
+                        <div>
+                          <h4 class="feature-title" style="font-size: 32px">
+                            AI Workflow Assistant
+                          </h4>
+                        </div>
+                      </div>
+                      <p class="feature-description">
+                        Generate complete workflows from natural language
+                        prompts with intelligent recommendations.
+                      </p>
+                      <div class="feature-tag">
+                        <i class="ti ti-bulb mr-2"></i>
+                        Powered by LLMs
+                      </div>
+                    </div>
+
+                    <!-- Data Layer -->
+                    <div
+                      class="feature-card magenta-card animate-fade-in animate-delay-3"
+                    >
+                      <div class="feature-number">03</div>
+                      <div class="flex items-center mb-4 relative z-1">
+                        <div
+                          class="icon-circle magenta-bg mr-4"
+                          style="width: 60px; height: 60px"
+                        >
+                          <i class="ti ti-database" style="font-size: 26px"></i>
+                        </div>
+                        <div>
+                          <h4 class="feature-title" style="font-size: 32px">
+                            Unified Data Layer
+                          </h4>
+                        </div>
+                      </div>
+                      <p class="feature-description">
+                        Centralized data storage and management across all
+                        connected systems with real-time sync.
+                      </p>
+                      <div class="feature-tag">
+                        <i class="ti ti-refresh mr-2"></i>
+                        Auto-sync
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Platform Metrics -->
+              <div class="right-column">
+                <h3
+                  class="text-lg font-semibold text-gray-700 column-header"
+                  style="font-size: 20px"
+                >
+                  Platform Availability
+                </h3>
+
+                <div class="content-container">
+                  <div class="metrics-grid">
+                    <!-- Web & Desktop Platform -->
+                    <div class="metric-card animate-fade-in animate-delay-1">
+                      <div class="icon-circle deep-purple-bg">
+                        <i class="ti ti-devices"></i>
+                      </div>
+                      <h4
+                        class="font-medium text-gray-500 mt-3"
+                        style="font-size: 18px"
+                      >
+                        Web & Desktop Platform
+                      </h4>
+                      <div
+                        class="metric-value number deep-purple-text"
+                        style="font-size: 1.6rem"
+                      >
+                        Multiplatform
+                      </div>
+                      <div class="metric-label">
+                        Cloud-native SaaS with Windows, macOS, and Linux desktop
+                        applications
+                      </div>
+                    </div>
+
+                    <!-- Mobile Experience -->
+                    <div class="metric-card animate-fade-in animate-delay-2">
+                      <div class="icon-circle medium-purple-bg">
+                        <i class="ti ti-device-mobile"></i>
+                      </div>
+                      <h4
+                        class="font-medium text-gray-500 mt-3"
+                        style="font-size: 18px"
+                      >
+                        Mobile Experience
+                      </h4>
+                      <div
+                        class="metric-value number medium-purple-text"
+                        style="font-size: 1.6rem"
+                      >
+                        iOS & Android
+                      </div>
+                      <div class="metric-label">
+                        Native apps with workflow monitoring and on-the-go
+                        approvals
+                      </div>
+                    </div>
+
+                    <!-- IoT -->
+                    <div class="metric-card animate-fade-in animate-delay-3">
+                      <div class="icon-circle magenta-bg">
+                        <i class="ti ti-cpu"></i>
+                      </div>
+                      <h4
+                        class="font-medium text-gray-500 mt-3"
+                        style="font-size: 18px"
+                      >
+                        IoT
+                      </h4>
+                      <div
+                        class="metric-value number magenta-text"
+                        style="font-size: 1.6rem"
+                      >
+                        Smart Devices
+                      </div>
+                      <div class="metric-label">
+                        Dedicated integration with connected device ecosystems
+                      </div>
+                    </div>
+
+                    <!-- API & SDK Ecosystem -->
+                    <div class="metric-card animate-fade-in animate-delay-4">
+                      <div class="icon-circle gold-bg">
+                        <i class="ti ti-api"></i>
+                      </div>
+                      <h4
+                        class="font-medium text-gray-500 mt-3"
+                        style="font-size: 18px"
+                      >
+                        Integration Ecosystem
+                      </h4>
+                      <div
+                        class="metric-value number gold-text"
+                        style="font-size: 1.6rem"
+                      >
+                        Open API & SDK
+                      </div>
+                      <div class="metric-label">
+                        Seamless third-party integrations and OEM partnerships
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spacer for bottom navigation -->
+            <div class="mb-8"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+      <button id="prevBtn" class="nav-button">
+        <i class="bx bx-chevron-left"></i> Previous
+      </button>
+      <button id="nextBtn" class="nav-button primary">
+        Next <i class="bx bx-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+      <div class="indicator"></div>
+      <span id="slideCounter">04</span>
+      <span>/</span>
+      <span id="slideCounterTotal">12</span>
+    </div>
+
+    <!-- Squircle JavaScript -->
+    <script src="js/squircles.js"></script>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize squircles with custom CSS variables
+        if (window.BublSquircles) {
+          setTimeout(function () {
+            BublSquircles.init();
+          }, 100);
+        }
+
+        // Set up navigation between files
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const navDots = document.getElementById("navDots");
+        const currentSlideNumber = 4;
+        const totalSlides = 12;
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("nav-dot");
+          if (i === currentSlideNumber - 1) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i + 1));
+          navDots.appendChild(dot);
+        }
+
+        // Navigation functions
+        function goToSlide(slideNumber) {
+          window.location.href = `slide${slideNumber}.html`;
+        }
+
+        // Event listeners
+        prevBtn.addEventListener("click", () => {
+          if (currentSlideNumber > 1) {
+            goToSlide(currentSlideNumber - 1);
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentSlideNumber < totalSlides) {
+            goToSlide(currentSlideNumber + 1);
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            if (currentSlideNumber < totalSlides) {
+              goToSlide(currentSlideNumber + 1);
+            }
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            if (currentSlideNumber > 1) {
+              goToSlide(currentSlideNumber - 1);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

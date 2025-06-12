@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubl - Slide 6</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Global Squircle Styles -->
+    <link rel="stylesheet" href="css/squircles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Box Icons for modern iconography -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --deep-purple: #3a3470;
+        --medium-purple: #6b5b95;
+        --magenta: #e83e8c;
+        --gold: #ffb800;
+        --light-purple: #8a63ff;
+        --card-radius: 24;
+        --icon-radius: 16;
+        --tag-radius: 12;
+        --badge-radius: 10;
+        --squircle-factor: 1;
+      }
+
+      .deep-purple {
+        background-color: #3a3470;
+        color: white;
+      }
+      .medium-purple {
+        background-color: #8a5b96;
+        color: white;
+      }
+      .magenta {
+        background-color: #e15b8f;
+        color: white;
+      }
+      .gold {
+        background-color: #f9ae56;
+        color: #333;
+      }
+      .zapier-orange {
+        background-color: var(--zapier-orange);
+        color: white;
+      }
+      .workato-purple {
+        background-color: var(--workato-purple);
+        color: white;
+      }
+      .deep-purple-text {
+        color: #3a3470;
+      }
+      .medium-purple-text {
+        color: #8a5b96;
+      }
+      .magenta-text {
+        color: #e15b8f;
+      }
+      .gold-text {
+        color: #f9ae56;
+      }
+
+      /* Logo images */
+      .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      .logo-img {
+        height: 30px;
+        width: auto;
+        object-fit: contain;
+        margin-right: 8px;
+      }
+
+      .bubl-logo {
+        height: 40px;
+      }
+
+      .workato-logo {
+        height: 30px;
+        width: 30px;
+        border-radius: 4px;
+        margin-right: 8px;
+      }
+
+      .zapier-logo {
+        height: 30px;
+        width: 30px;
+        border-radius: 4px;
+        margin-right: 8px;
+      }
+
+      .company-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        font-weight: 600;
+        background-color: #f1f1f1;
+        color: #666;
+        border-radius: 12px;
+        font-size: 16px;
+        box-shadow: none;
+        border: none;
+        overflow: hidden;
+      }
+
+      .squircle-badge {
+        --badge-radius: 10;
+      }
+
+      /* Feature icons */
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.25rem;
+      }
+
+      .squircle-icon {
+        --icon-radius: 16;
+      }
+
+      /* Table styling */
+      .comparison-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 1.25rem;
+        text-align: center;
+      }
+
+      .comparison-table th {
+        font-weight: 600;
+        font-family: var(--font-display);
+      }
+
+      .comparison-table tr:not(:last-child) td,
+      .comparison-table tr:not(:last-child) th {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .comparison-table th:not(:last-child),
+      .comparison-table td:not(:last-child) {
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .comparison-table .us-column {
+        background-color: rgba(58, 52, 112, 0.05);
+      }
+
+      .comparison-table .feature-column {
+        text-align: left;
+        background-color: #f8f8ff;
+      }
+
+      .table-container {
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      /* Ratings */
+      .rating-high {
+        color: #10b981;
+        font-weight: 600;
+      }
+
+      .rating-medium {
+        color: #f59e0b;
+        font-weight: 600;
+      }
+
+      .rating-low {
+        color: #ef4444;
+        font-weight: 600;
+      }
+
+      .highlight {
+        position: relative;
+        display: inline-block;
+      }
+
+      .highlight::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background-color: rgba(249, 174, 86, 0.3);
+        z-index: -1;
+        border-radius: 3px;
+      }
+
+      /* Bottom card with key differentiators */
+      .insight-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .insight-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid rgba(58, 52, 112, 0.1);
+      }
+
+      .insight-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .insight-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+        background-color: rgba(247, 247, 255, 0.7);
+        border-radius: 16px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .insight-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px -8px rgba(58, 52, 112, 0.15);
+      }
+
+      .insight-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: white;
+        font-size: 1.25rem;
+      }
+
+      .insight-title {
+        font-family: "Sora", sans-serif;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--deep-purple);
+        font-size: 22px;
+      }
+
+      .insight-description {
+        font-size: 20px;
+        color: #4b5563;
+        line-height: 1.4;
+      }
+
+      /* Harmonious typographic scale */
+      .section-heading {
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 2rem;
+      }
+
+      .subtitle {
+        font-family: "Sora", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--light-purple);
+        margin-bottom: 2rem;
+        line-height: 1.3;
+      }
+
+      p,
+      .text-gray-600,
+      .text-gray-700,
+      .text-indigo-100,
+      .text-description {
+        font-size: 20px;
+        line-height: 1.4;
+      }
+
+      h3,
+      .text-xl,
+      .text-2xl,
+      .feature-title {
+        font-size: 28px;
+        line-height: 1.3;
+      }
+
+      .text-lg {
+        font-size: 22px;
+        line-height: 1.3;
+      }
+
+      .text-sm,
+      .feature-tag,
+      .feature-pill {
+        font-size: 16px;
+      }
+
+      /* Update font sizes for key differentiator cards */
+      .insight-card h3 {
+        font-size: 28px;
+      }
+
+      .insight-card p {
+        font-size: 20px;
+      }
+
+      /* Table cell text */
+      .comparison-table th,
+      .comparison-table td {
+        font-size: 20px;
+      }
+
+      /* Rating spans */
+      .rating-high,
+      .rating-medium,
+      .rating-low {
+        font-size: 20px;
+      }
+
+      .feature-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .feature-card:hover {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar" style="width: 50%"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+      <!-- Slide 6: Competitive Landscape -->
+      <section id="slide-6" class="slide active">
+        <div class="slide-content gradient-subtle">
+          <!-- Title and Subtitle -->
+          <h2
+            class="section-heading mb-4 text-left"
+            style="color: #000; font-size: 80px"
+          >
+            Competitive Landscape
+          </h2>
+          <p class="subtitle text-left" style="font-size: 40px; color: #8a63ff">
+            Standing Out in a Crowded Field
+          </p>
+
+          <!-- Comparison Table -->
+          <div
+            class="max-w-6xl mx-auto bg-white squircle-card table-container shadow-lg overflow-hidden"
+          >
+            <table class="comparison-table">
+              <thead>
+                <tr class="bg-gray-50">
+                  <th class="feature-column" style="width: 25%">Feature</th>
+                  <th style="width: 25%">
+                    <div class="logo-container">
+                      <img
+                        src="zapier.png"
+                        alt="Zapier Logo"
+                        class="zapier-logo"
+                        style="width: auto; height: 30px; object-fit: contain"
+                      />
+                      <span>Zapier/Make</span>
+                    </div>
+                  </th>
+                  <th style="width: 25%">
+                    <div class="logo-container">
+                      <img
+                        src="images.png"
+                        alt="Workato Logo"
+                        class="workato-logo"
+                        style="width: auto; height: 30px; object-fit: contain"
+                      />
+                      <span>Workato</span>
+                    </div>
+                  </th>
+                  <th class="us-column" style="width: 25%">
+                    <div class="logo-container">
+                      <img
+                        src="bubl-logo.png"
+                        alt="Bubl Logo"
+                        class="logo-img bubl-logo"
+                      />
+                      <span class="deep-purple-text font-bold mr-2">Bubl</span>
+                      <span class="company-badge">(Us)</span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Ease of Use -->
+                <tr>
+                  <th class="feature-column">
+                    <div class="flex items-center">
+                      <div class="feature-icon squircle-icon deep-purple mr-3">
+                        <i class="bx bx-user text-lg"></i>
+                      </div>
+                      <span>Ease of Use</span>
+                    </div>
+                  </th>
+                  <td>
+                    <span class="rating-high">High</span>
+                  </td>
+                  <td>
+                    <span class="rating-medium">Medium</span>
+                  </td>
+                  <td class="us-column">
+                    <span class="rating-high">High</span>
+                    <span class="deep-purple-text font-bold">+&nbsp;AI</span>
+                  </td>
+                </tr>
+
+                <!-- Data Governance -->
+                <tr>
+                  <th class="feature-column">
+                    <div class="flex items-center">
+                      <div
+                        class="feature-icon squircle-icon medium-purple mr-3"
+                      >
+                        <i class="bx bx-shield-quarter text-lg"></i>
+                      </div>
+                      <span>Data Governance</span>
+                    </div>
+                  </th>
+                  <td>
+                    <span class="rating-low">Low</span>
+                  </td>
+                  <td>
+                    <span class="rating-high">High</span>
+                  </td>
+                  <td class="us-column">
+                    <span class="rating-high">High</span>
+                  </td>
+                </tr>
+
+                <!-- Extensibility -->
+                <tr>
+                  <th class="feature-column">
+                    <div class="flex items-center">
+                      <div class="feature-icon squircle-icon magenta mr-3">
+                        <i class="bx bx-extension text-lg"></i>
+                      </div>
+                      <span>Extensibility</span>
+                    </div>
+                  </th>
+                  <td>
+                    <span class="rating-medium">Medium</span>
+                  </td>
+                  <td>
+                    <span class="rating-high">High</span>
+                  </td>
+                  <td class="us-column">
+                    <span class="rating-high">High</span>
+                    <span class="deep-purple-text font-bold">(SDK)</span>
+                  </td>
+                </tr>
+
+                <!-- Pricing -->
+                <tr>
+                  <th class="feature-column">
+                    <div class="flex items-center">
+                      <div class="feature-icon squircle-icon gold mr-3">
+                        <i class="bx bx-dollar text-lg"></i>
+                      </div>
+                      <span>Pricing (Mid-Market)</span>
+                    </div>
+                  </th>
+                  <td>
+                    <span class="rating-high">Low</span>
+                  </td>
+                  <td>
+                    <span class="rating-low">High</span>
+                  </td>
+                  <td class="us-column">
+                    <span class="magenta-text font-bold">Optimized</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Section with Key Differentiator - New Layout -->
+          <div class="mt-12 max-w-6xl mx-auto">
+            <div class="insight-card squircle-card">
+              <div class="insight-header">
+                <div
+                  class="w-14 h-14 squircle-icon deep-purple flex items-center justify-center flex-shrink-0 mr-5"
+                >
+                  <i class="bx bx-star text-2xl"></i>
+                </div>
+                <div>
+                  <h3
+                    class="text-2xl font-bold deep-purple-text"
+                    style="font-family: 'Sora', sans-serif"
+                  >
+                    Our Unique Value Proposition
+                  </h3>
+                  <p class="text-gray-600 mt-1">
+                    Why mid-market companies choose Bubl over competitors
+                  </p>
+                </div>
+              </div>
+
+              <div class="insight-content">
+                <!-- Key Differentiator 1 -->
+                <div class="insight-item">
+                  <div class="insight-icon squircle-icon deep-purple">
+                    <i class="bx bx-user-voice"></i>
+                  </div>
+                  <h4 class="insight-title">Enterprise Power, Consumer UX</h4>
+                  <p class="insight-description">
+                    Simplicity of consumer tools with the robustness of
+                    enterprise solutions
+                  </p>
+                </div>
+
+                <!-- Key Differentiator 2 -->
+                <div class="insight-item">
+                  <div class="insight-icon squircle-icon medium-purple">
+                    <i class="bx bx-brain"></i>
+                  </div>
+                  <h4 class="insight-title">AI-Powered Workflows</h4>
+                  <p class="insight-description">
+                    Generate complete automation solutions from natural language
+                    prompts
+                  </p>
+                </div>
+
+                <!-- Key Differentiator 3 -->
+                <div class="insight-item">
+                  <div class="insight-icon squircle-icon magenta">
+                    <i class="bx bx-line-chart"></i>
+                  </div>
+                  <h4 class="insight-title">Mid-Market Optimized</h4>
+                  <p class="insight-description">
+                    Perfect balance of price, features and scalability for
+                    growing businesses
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+      <button id="prevBtn" class="nav-button">
+        <i class="bx bx-chevron-left"></i> Previous
+      </button>
+      <button id="nextBtn" class="nav-button primary">
+        Next <i class="bx bx-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+      <div class="indicator"></div>
+      <span id="slideCounter">06</span>
+      <span>/</span>
+      <span id="slideCounterTotal">12</span>
+    </div>
+
+    <!-- Squircle JavaScript -->
+    <script src="js/squircles.js"></script>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize squircles with custom CSS variables
+        if (window.BublSquircles) {
+          setTimeout(function () {
+            BublSquircles.init();
+          }, 100);
+        }
+
+        // Set up navigation between files
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const navDots = document.getElementById("navDots");
+        const currentSlideNumber = 6;
+        const totalSlides = 12;
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("nav-dot");
+          if (i === currentSlideNumber - 1) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i + 1));
+          navDots.appendChild(dot);
+        }
+
+        // Navigation functions
+        function goToSlide(slideNumber) {
+          window.location.href = `slide${slideNumber}.html`;
+        }
+
+        // Event listeners
+        prevBtn.addEventListener("click", () => {
+          if (currentSlideNumber > 1) {
+            goToSlide(currentSlideNumber - 1);
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentSlideNumber < totalSlides) {
+            goToSlide(currentSlideNumber + 1);
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            if (currentSlideNumber < totalSlides) {
+              goToSlide(currentSlideNumber + 1);
+            }
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            if (currentSlideNumber > 1) {
+              goToSlide(currentSlideNumber - 1);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

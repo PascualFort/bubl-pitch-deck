@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bubl - Slide 4 (Alternate)</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/styles.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Box Icons for modern iconography -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --deep-purple: #3a3470;
+        --medium-purple: #8a5b96;
+        --magenta: #e15b8f;
+        --gold: #f9ae56;
+        --ios-radius: 16px;
+      }
+
+      .deep-purple {
+        background-color: var(--deep-purple);
+        color: white;
+      }
+      .medium-purple {
+        background-color: var(--medium-purple);
+        color: white;
+      }
+      .magenta {
+        background-color: var(--magenta);
+        color: white;
+      }
+      .gold {
+        background-color: var(--gold);
+        color: #333;
+      }
+      .deep-purple-text {
+        color: var(--deep-purple);
+      }
+      .medium-purple-text {
+        color: var(--medium-purple);
+      }
+      .magenta-text {
+        color: var(--magenta);
+      }
+      .gold-text {
+        color: var(--gold);
+      }
+
+      .feature-card {
+        background-color: white;
+        border-radius: var(--ios-radius);
+        padding: 1.5rem;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        margin-bottom: 1.5rem;
+        position: relative;
+        overflow: hidden;
+        border-left: 6px solid transparent;
+      }
+
+      .feature-card.deep-purple-border {
+        border-left-color: var(--deep-purple);
+      }
+
+      .feature-card.medium-purple-border {
+        border-left-color: var(--medium-purple);
+      }
+
+      .feature-card.magenta-border {
+        border-left-color: var(--magenta);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-card:hover .card-bg {
+        opacity: 0.05;
+      }
+
+      .card-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 180px;
+        height: 180px;
+        opacity: 0.02;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+      }
+
+      .icon-rounded {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: white;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .metric-card {
+        border-radius: var(--ios-radius);
+        padding: 1.75rem;
+        height: 100%;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .metric-card.deep-purple-bg {
+        background: linear-gradient(
+          135deg,
+          rgba(58, 52, 112, 0.05),
+          rgba(58, 52, 112, 0.12)
+        );
+        border: 1px solid rgba(58, 52, 112, 0.1);
+      }
+
+      .metric-card.medium-purple-bg {
+        background: linear-gradient(
+          135deg,
+          rgba(138, 91, 150, 0.05),
+          rgba(138, 91, 150, 0.12)
+        );
+        border: 1px solid rgba(138, 91, 150, 0.1);
+      }
+
+      .metric-card.magenta-bg {
+        background: linear-gradient(
+          135deg,
+          rgba(225, 91, 143, 0.05),
+          rgba(225, 91, 143, 0.12)
+        );
+        border: 1px solid rgba(225, 91, 143, 0.1);
+      }
+
+      .metric-card.gold-bg {
+        background: linear-gradient(
+          135deg,
+          rgba(249, 174, 86, 0.05),
+          rgba(249, 174, 86, 0.12)
+        );
+        border: 1px solid rgba(249, 174, 86, 0.1);
+      }
+
+      .metric-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .metric-value {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0.75rem 0;
+        line-height: 1;
+      }
+
+      .metric-label {
+        color: #555;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-description {
+        color: #4b5563;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        position: relative;
+        z-index: 1;
+      }
+
+      .subtitle {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--bubl-primary);
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background-color: rgba(0, 0, 0, 0.05);
+        color: #4b5563;
+        margin-top: 0.75rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .feature-stagger {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .feature-stagger > div:nth-child(2) {
+        margin-left: 1.5rem;
+      }
+
+      .feature-stagger > div:nth-child(3) {
+        margin-left: 3rem;
+      }
+
+      .animate-fade-in,
+      .animate-delay-1,
+      .animate-delay-2,
+      .animate-delay-3,
+      .animate-delay-4 {
+        opacity: 1;
+        transform: none;
+      }
+
+      .feature-number {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 24px;
+        margin-right: 8px;
+      }
+
+      .feature-number.deep-purple-bg {
+        background-color: var(--deep-purple);
+      }
+
+      .feature-number.medium-purple-bg {
+        background-color: var(--medium-purple);
+      }
+
+      .feature-number.magenta-bg {
+        background-color: var(--magenta);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+      <div id="progressBar" class="progress-bar" style="width: 33.3%"></div>
+    </div>
+
+    <!-- Slides Container -->
+    <div class="slides-container">
+      <!-- Slide 4: Our Solution -->
+      <section id="slide-4" class="slide active">
+        <div class="slide-content gradient-subtle">
+          <div class="h-full flex flex-col">
+            <!-- Heading -->
+            <h2 class="section-heading mb-4 text-left">Our Solution</h2>
+            <p class="subtitle text-left">
+              Intelligent Workflow Automation, Simplified
+            </p>
+
+            <!-- Two-column layout -->
+            <div class="grid grid-cols-2 gap-8 h-full">
+              <!-- Left Column: Core Features -->
+              <div class="flex flex-col">
+                <h3 class="text-xl mb-6 font-semibold text-gray-700">
+                  Core Platform Features
+                </h3>
+
+                <!-- Feature cards in a staggered layout -->
+                <div class="feature-stagger">
+                  <!-- Visual Workflow Builder -->
+                  <div
+                    class="feature-card deep-purple-border animate-fade-in animate-delay-1"
+                  >
+                    <img
+                      src="https://cdn.iconscout.com/icon/free/png-256/free-flow-chart-1912225-1617650.png"
+                      class="card-bg"
+                      alt=""
+                    />
+                    <div class="flex items-center mb-4">
+                      <div class="feature-number deep-purple-bg">1</div>
+                      <div class="icon-rounded deep-purple mr-4">
+                        <i class="bx bxs-grid-alt"></i>
+                      </div>
+                      <div>
+                        <h4 class="feature-title deep-purple-text">
+                          Visual Workflow Builder
+                        </h4>
+                      </div>
+                    </div>
+                    <p class="feature-description">
+                      Intuitive drag-and-drop interface to design, build, and
+                      deploy complex workflows without coding skills required.
+                    </p>
+                    <div class="feature-tag">
+                      <i class="bx bx-code-curly mr-2"></i>
+                      No-code friendly
+                    </div>
+                  </div>
+
+                  <!-- AI Workflow Assistant -->
+                  <div
+                    class="feature-card medium-purple-border animate-fade-in animate-delay-2"
+                  >
+                    <img
+                      src="https://cdn.iconscout.com/icon/free/png-256/free-bot-136-504893.png"
+                      class="card-bg"
+                      alt=""
+                    />
+                    <div class="flex items-center mb-4">
+                      <div class="feature-number medium-purple-bg">2</div>
+                      <div class="icon-rounded medium-purple mr-4">
+                        <i class="bx bx-bot"></i>
+                      </div>
+                      <div>
+                        <h4 class="feature-title medium-purple-text">
+                          AI Workflow Assistant
+                        </h4>
+                      </div>
+                    </div>
+                    <p class="feature-description">
+                      Generate complete workflows from natural language prompts
+                      with intelligent recommendations and optimizations.
+                    </p>
+                    <div class="feature-tag">
+                      <i class="bx bx-bulb mr-2"></i>
+                      Powered by LLMs
+                    </div>
+                  </div>
+
+                  <!-- Data Layer -->
+                  <div
+                    class="feature-card magenta-border animate-fade-in animate-delay-3"
+                  >
+                    <img
+                      src="https://cdn.iconscout.com/icon/free/png-256/free-data-management-1781559-1513812.png"
+                      class="card-bg"
+                      alt=""
+                    />
+                    <div class="flex items-center mb-4">
+                      <div class="feature-number magenta-bg">3</div>
+                      <div class="icon-rounded magenta mr-4">
+                        <i class="bx bx-data"></i>
+                      </div>
+                      <div>
+                        <h4 class="feature-title magenta-text">
+                          Unified Data Layer
+                        </h4>
+                      </div>
+                    </div>
+                    <p class="feature-description">
+                      Centralized data storage and management across all
+                      connected systems with real-time synchronization
+                      capabilities.
+                    </p>
+                    <div class="feature-tag">
+                      <i class="bx bx-sync mr-2"></i>
+                      Auto-sync
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Platform Metrics -->
+              <div class="flex flex-col justify-center">
+                <h3 class="text-xl mb-6 font-semibold text-gray-700">
+                  Platform Metrics
+                </h3>
+
+                <div class="grid grid-cols-2 gap-6">
+                  <!-- Speed Metric -->
+                  <div
+                    class="metric-card deep-purple-bg animate-fade-in animate-delay-1"
+                  >
+                    <div class="icon-rounded deep-purple">
+                      <i class="bx bx-timer"></i>
+                    </div>
+                    <h4 class="font-medium text-gray-600 mt-4">
+                      Development Speed
+                    </h4>
+                    <div class="metric-value deep-purple-text">10x</div>
+                    <div class="metric-label">
+                      Faster implementation compared to traditional solutions
+                    </div>
+                  </div>
+
+                  <!-- Integration Metric -->
+                  <div
+                    class="metric-card medium-purple-bg animate-fade-in animate-delay-2"
+                  >
+                    <div class="icon-rounded medium-purple">
+                      <i class="bx bx-extension"></i>
+                    </div>
+                    <h4 class="font-medium text-gray-600 mt-4">Integrations</h4>
+                    <div class="metric-value medium-purple-text">200+</div>
+                    <div class="metric-label">
+                      Pre-built connections to popular apps and services
+                    </div>
+                  </div>
+
+                  <!-- Automation Metric -->
+                  <div
+                    class="metric-card magenta-bg animate-fade-in animate-delay-3"
+                  >
+                    <div class="icon-rounded magenta">
+                      <i class="bx bx-stats"></i>
+                    </div>
+                    <h4 class="font-medium text-gray-600 mt-4">Time Saved</h4>
+                    <div class="metric-value magenta-text">68%</div>
+                    <div class="metric-label">
+                      Average reduction in manual process time
+                    </div>
+                  </div>
+
+                  <!-- Accuracy Metric -->
+                  <div
+                    class="metric-card gold-bg animate-fade-in animate-delay-4"
+                  >
+                    <div class="icon-rounded gold">
+                      <i class="bx bx-check-shield"></i>
+                    </div>
+                    <h4 class="font-medium text-gray-600 mt-4">Accuracy</h4>
+                    <div class="metric-value gold-text">99.9%</div>
+                    <div class="metric-label">
+                      Process reliability with built-in error handling
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Spacer for bottom navigation -->
+            <div class="mb-10"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="navigation-controls">
+      <button id="prevBtn" class="nav-button">
+        <i class="bx bx-chevron-left"></i> Previous
+      </button>
+      <button id="nextBtn" class="nav-button primary">
+        Next <i class="bx bx-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Dots -->
+    <div id="navDots" class="nav-dots"></div>
+
+    <!-- Slide Counter -->
+    <div class="slide-counter">
+      <div class="indicator"></div>
+      <span id="slideCounter">04</span>
+      <span>/</span>
+      <span id="slideCounterTotal">12</span>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set up navigation between files
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const navDots = document.getElementById("navDots");
+        const currentSlideNumber = 4;
+        const totalSlides = 12;
+
+        // Create navigation dots
+        for (let i = 0; i < totalSlides; i++) {
+          const dot = document.createElement("div");
+          dot.classList.add("nav-dot");
+          if (i === currentSlideNumber - 1) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i + 1));
+          navDots.appendChild(dot);
+        }
+
+        // Navigation functions
+        function goToSlide(slideNumber) {
+          window.location.href = `slide${slideNumber}.html`;
+        }
+
+        // Event listeners
+        prevBtn.addEventListener("click", () => {
+          if (currentSlideNumber > 1) {
+            goToSlide(currentSlideNumber - 1);
+          }
+        });
+
+        nextBtn.addEventListener("click", () => {
+          if (currentSlideNumber < totalSlides) {
+            goToSlide(currentSlideNumber + 1);
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight" || e.key === "PageDown") {
+            if (currentSlideNumber < totalSlides) {
+              goToSlide(currentSlideNumber + 1);
+            }
+          } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+            if (currentSlideNumber > 1) {
+              goToSlide(currentSlideNumber - 1);
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
